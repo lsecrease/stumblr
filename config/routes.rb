@@ -23,7 +23,8 @@ Rails.application.routes.draw do
      get '/users/:user_id/is_following' => "users#is_following"
      
       resources :posts do
-  end
+       resources :comments
+      end
     
     
   # The priority is based upon order of creation: first created -> highest priority.
