@@ -12,6 +12,8 @@ Rails.application.routes.draw do
      
      match 'users/:id'    => 'users#update_user', via: [:patch]
      
+     match 'posts/search' => 'posts#search', via: [:get]
+     
      get '/follow' => "users#follow"
      get '/unfollow' => "users#unfollow"
      
@@ -19,6 +21,9 @@ Rails.application.routes.draw do
      get '/following/:id'   =>  "users#following"
      
      get '/users/:user_id/is_following' => "users#is_following"
+     
+      resources :posts do
+  end
     
     
   # The priority is based upon order of creation: first created -> highest priority.
