@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-     before_action :authenticate_user!, :except => [:show_user_profile, :followers, :following]
+    before_action :authenticate_user!, :except => [:reset_password, :show_user_profile, :followers, :following]
      
      
     def my_current_user
@@ -55,6 +55,14 @@ class UsersController < ApplicationController
         else
        render json: @user.errors, status: :unprocessable_entity
         end
+    end
+    
+    
+    #First find the user by the parameter :user_email (passed on by the request) and then call Devise's send_reset_password_instructions method
+    def reset_password
+        @user = User.find_by_email(params[:user_email])
+        @user.send_reset_password_instructions
+        render json: @user
     end
     
     
